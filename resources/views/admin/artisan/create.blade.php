@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            {!! Form::open(['action' => 'Admin\artisanController@store', 'method' => 'POST']) !!}
+                            {!! Form::open(['action' => 'Admin\artisanController@store', 'method' => 'POST','enctype'=>'multipart/form-data','files' =>true]) !!}
                             <div class="form-group">
                                 {!! Form::label('nom', 'Nom :') !!}
                                 {!! Form::text('bnom','', ['class' => 'form-control', 'placeholder' => 'Saisir le nom de l&rsquo;artisan','required' => 'required']) !!}
@@ -90,7 +90,12 @@
                                 {!! Form::text('bemail','', ['class' => 'form-control', 'placeholder' => 'addressemail@gmail.com','required' => 'required']) !!}
                             </div>
                         </div>
-                        
+                        <div class="col-md-6">
+                            <div class="form-group">    
+                           {!! Form::label('imageart', 'Photo :') !!}
+                                {!! Form::file('imageart', null) !!}
+                            </div>
+                        </div>
                     </div>  
                     <div class="row">
                          <div class="col-md-3">                      </div>

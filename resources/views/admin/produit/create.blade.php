@@ -34,26 +34,16 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            {!! Form::open(['action' => 'Admin\produitController@store', 'method' => 'POST']) !!}
+                        {!! Form::open(['action' => 'Admin\produitController@store', 'method' => 'POST','enctype'=>'multipart/form-data','files' =>true]) !!}
                             <div class="form-group">
                                 {!! Form::label('nom', 'Nom :') !!}
                                 {!! Form::text('bnom','', ['class' => 'form-control', 'placeholder' => 'Saisir le nom du produit','required' => 'required']) !!}
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('photo', 'Photo :') !!}
-
-                                <div class="input-group">
-
-                                    <div class="input-group-addon">
-                                        {!! Form::file('bimage',null, ['class' => 'form-control','required' =>'required']) !!}
-                                    </div>
-                                    <div class="input-group-addon">
-                                        <img src="{{asset('admin/dist/img/avatar5.png')}}" class="direct-chat-img"
-                                            alt="User Image" />
-                                    </div>
-                                </div>
+                            <div class="form-group">    
+                           {!! Form::label('imagepro', 'Photo :') !!}
+                                {!! Form::file('imagepro', null) !!}
                             </div>
                         </div>
                     </div>
@@ -91,8 +81,8 @@
 
 
                             <div class="row">
-                         <div class="col-md-3">                      </div>
-                         <div class="col-md-3">                        </div>
+                         <div class="col-md-3">            </div>
+                         <div class="col-md-3">                </div>
                          <div class="col-md-3"> 
                              <div class="form-group">
                              <button type="submit" class="btn btn-success" id="form_submit" name="form[submit]"> <i class="far fa-plus-square"></i> Créer</button>
@@ -100,7 +90,7 @@
                             
                                  {!! Form::close() !!}</div>                     
                             </div>
-                            <div class="col-md-3">                      
+                            <div class="col-md-3">        
                             </div>
                     </div>
                            

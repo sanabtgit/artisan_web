@@ -33,10 +33,16 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            {!! Form::open(['action' => 'Admin\categorieController@store', 'method' => 'POST']) !!}
+                            {!! Form::open(['action' => 'Admin\categorieController@store', 'method' => 'POST','enctype'=>'multipart/form-data','files' =>true]) !!}
                             <div class="form-group">
                                 {!! Form::label('nom', 'Nom') !!}
                                 {!! Form::text('bnom','', ['class' => 'form-control', 'placeholder' => 'Saisir le nom de catégorie','required' => 'required']) !!}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">    
+                           {!! Form::label('imagecat', 'Photo :') !!}
+                                {!! Form::file('imagecat', null) !!}
                             </div>
                         </div>
                     </div>

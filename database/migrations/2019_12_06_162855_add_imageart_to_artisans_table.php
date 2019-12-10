@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddImagecatToCategoriesTable extends Migration
+class AddImageartToArtisansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class AddImagecatToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->text('imagecat')->nullable();
+        Schema::table('artisans', function (Blueprint $table) {
+            //
+            $table->text('imageart')->nullable();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -25,7 +26,7 @@ class AddImagecatToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::table('artisans', function (Blueprint $table) {
             //
         });
     }

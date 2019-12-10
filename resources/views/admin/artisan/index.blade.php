@@ -27,8 +27,8 @@
             <thead>
                 <tr>
               
-                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Nom</th>
-                    <th>Prénom</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Nom et prénom</th>
+                    <th>Photo</th>
                     
                     
                     <th>Addresse</th>
@@ -41,13 +41,14 @@
             </thead>
             <tbody>
           <!--  id	nom	prenom	email	address	face	twitt	created_at	updated_at	delegation_id -->
-                @foreach($tartisan as $artisan)
+                @foreach($dbartisan as $artisan)
                 <tr>
-                    <td>{{$artisan->nom}}</td>
-                    <td>{{$artisan->prenom}}</td>
+                    <td>{{$artisan->nom}} {{$artisan->prenom}}</td>
+                    <td> <img src="{{asset('storage/'.$artisan->imageart)}}" height="50px" width="50px"></td>
+              
                     <td>{{$artisan->address}}</td>
                     <td>{{$artisan->email}}</td>
-                    <td>{{$artisan->delegation_id}}</td>
+                    <td>{{$artisan->nomdeleg}}</td>
                     <td>{{$artisan->face}}</td>
                     <td>{{$artisan->twitt}}</td>
                    

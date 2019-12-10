@@ -11,6 +11,7 @@ class categorieController extends Controller
 {
     public function index()
     {
+
         $categories = categorie::all();//orderBy('nom','desc')->orderBy('created_at','desc')->paginate('3');
        
         return view('admin.categorie_produit.index')->with ('tcategories',$categories);
@@ -29,11 +30,20 @@ class categorieController extends Controller
         $this->validate($request,[
             'bnom' => 'required',
             'bdescription' => 'required',
-            
-        ]);
-
+            'imagecat'=>'image|nullable|max:10000'
+             ]);
+        if ($request->hasFile('imagecat')){
+            $fichiercoplet=$request->file('imagecat')->getClientOriginalName();
+            $nomfichier=pathinfo($fichiercoplet,PATHINFO_FILENAME);
+            $extfichier=$request->file('imagecat')->getClientOriginalExtension();
+            $fichier=$nomfichier.'-'.time().'.'.$extfichier;
+            $chemin=$request->file('imagecat')->storeAs('public',$fichier);
+        }else{
+            $fichier='unnamed.jpg';
+        }
         $mcategorie = new categorie;
         $mcategorie->nom = $request->input('bnom');
+        $mcategorie->imagecat =$fichier;
         $mcategorie->description = $request->input('bdescription');
         $mcategorie->save();
         return redirect('admin/categorie_produit');

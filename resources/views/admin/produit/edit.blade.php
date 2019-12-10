@@ -41,23 +41,7 @@
                                 chauffeur','required' => 'required']) !!}
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('photo', 'Photo') !!}
-
-                                <div class="input-group">
-
-                                    <div class="input-group-addon">
-                                        {!! Form::text('bimage',$edproduit->image, ['class' => 'form-control','required' =>
-                                        'required']) !!}
-                                    </div>
-                                    <div class="input-group-addon">
-                                        <img src="{{asset('admin/dist/img/avatar5.png')}}" class="direct-chat-img"
-                                            alt="User Image" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
 
                     <div class="row">

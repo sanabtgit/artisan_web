@@ -13,9 +13,12 @@ class artisanController extends Controller
 {
     public function index($nom = null)
     {
-      $artisan = artisan::all();//orderBy('nom','desc')->orderBy('created_at','desc')->paginate('3');
-       //$produits = produit::paginate(5);
-        return view('admin.artisan.index')->with ('tartisan',$artisan);//compact('produits'););
+        $dbartisan =\DB::select("SELECT 
+        artisans.*,delegations.nom  as nomdeleg
+        FROM delegations , artisans
+        WHERE delegations.id=artisans.delegation_id");
+       // $artisan = artisan::all();
+        return view('admin.artisan.index')->with ('dbartisan',$dbartisan);//compact('produits'););
 
         
     }
@@ -38,6 +41,7 @@ class artisanController extends Controller
     */
     public function store(Request $request)
     {
+       
         
         $this->validate($request,[
             'bnom' => 'required',
@@ -47,8 +51,17 @@ class artisanController extends Controller
             'bface' => 'required',
             'btwitt' => 'required',
             'bemail' => 'required',
+            'imageart'=>'image|nullable|max:10000'
         ]);
-        
+        if ($request->hasFile('imageart')){
+            $fichiercoplet=$request->file('imageart')->getClientOriginalName();
+            $nomfichier=pathinfo($fichiercoplet,PATHINFO_FILENAME);
+            $extfichier=$request->file('imageart')->getClientOriginalExtension();
+            $fichier=$nomfichier.'-'.time().'.'.$extfichier;
+            $chemin=$request->file('imageart')->storeAs('public',$fichier);
+        }else{
+            $fichier='unnamed.jpg';
+        }
        $martisan = new artisan;
         $martisan->nom = $request->input('bnom');
         $martisan->prenom = $request->input('bprenom');
@@ -57,10 +70,10 @@ class artisanController extends Controller
         $martisan->delegation_id = $request->input('delegation_id');
        $martisan->face = $request->input('bface');
        $martisan->twitt = $request->input('btwitt');
-      
+       $martisan->imageart =$fichier;
        $martisan->save();
         
-     dd( $martisan); 
+     //dd( $martisan); 
         return redirect('admin/artisan');
     }
   
@@ -85,10 +98,10 @@ class artisanController extends Controller
     {
         // 
         $martisan = artisan::find($id);
-        $tdelegation = delegation::all()->pluck('nom','id');
+       // $tdelegation = delegation::all()->pluck('nom','id');
        
        
-        return view ('admin.artisan.edit')->with('edartisan',$martisan,'tdelegation');
+        return view ('admin.artisan.edit')->with('edartisan',$martisan);
 
     }
 
@@ -105,19 +118,19 @@ class artisanController extends Controller
             'bnom' => 'required',
             'bprenom' => 'required',
             'baddress' => 'required',
-            'delegation_id' => 'required',
+            
             'bface' => 'required',
             'btwitt' => 'required',
             'bemail' => 'required',
             
         ]);
-        $tdelegation = delegation::all()->pluck('nom','id');
+    //    $tdelegation = delegation::all()->pluck('nom','id');
         $martisan = artisan::find($id);
         $martisan->nom = $request->input('bnom');
         $martisan->prenom = $request->input('bprenom');
         $martisan->email = $request->input('bemail');
         $martisan->address = $request->input('baddress');
-        $martisan->delegation_id = $request->input('delegation_id');
+    //    $martisan->delegation_id = $request->input('delegation_id');
         $martisan->face = $request->input('bface');
         $martisan->twitt = $request->input('btwitt');
         

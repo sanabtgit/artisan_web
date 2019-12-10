@@ -27,8 +27,8 @@
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th>Description</th>
-                  
+                    <th>photo</th>
+                  <th>Description</th>
                    <th>Actions</th>
                 </tr>
             </thead>
@@ -37,7 +37,8 @@
                 <tr>
                    
                     <td>{{$categorie->nom}}</td>
-                    <td>{{$categorie->description}}</td>
+                    <td> <img src="{{asset('storage/'.$categorie->imagecat)}}" height="50px" width="50px"></td>
+                 <td>{{$categorie->description}}</td>
                  
                     
                     <td>

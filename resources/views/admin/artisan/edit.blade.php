@@ -53,14 +53,8 @@
                                 {!! Form::text('baddress',$edartisan->address, ['class' => 'form-control', 'placeholder' => 'Saisir l&rsquo;addresse de l&rsquo;artisan','required' => 'required']) !!}
                             </div>
                         </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('delegation_id', 'Délégation :') !!}
-                                {!! Form::select('delegation_id',$edartisan->$tdelegation,null,['class' => 'form-control']) !!}
-                            </div>
-                            
-                     
-                        </div>
+                   
+                        
                     </div>
                     <div class="row">
                         <div class="col-md-6">

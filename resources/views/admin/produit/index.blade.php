@@ -35,14 +35,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($tproduits as $produit)
+  
+                @foreach($dbproduits as $produit)
                 <tr>
-                   
-                    <td>{{$produit->nom}}</td>
+                 <td>{{$produit->nom}}</td>
                     <td>{{$produit->description}}</td>
-                    <td>{{$produit->image}}</td>
-                    <td>{{$produit->categorie_id}}</td>
-                    <td>{{$produit->artisan_id}}</td>
+                  <td> <img src="{{asset('storage/'.$produit->imagepro)}}" height="50px" width="50px"></td>
+                      <td>{{$produit->nomcat}}</td>
+                    <td>{{$produit->nomart}} {{$produit->prenomart}}</td>
                     <td>
                         <a href="produit/{{$produit->id}}/edit" class="btn btn-warning btn-xs">
                         <i class="fas fa-fw fa-edit"></i>Modifier
@@ -52,18 +52,12 @@
                         <a onclick="return confirm('Etes vous sûr(e) de vouloir supprimer ce client ?')">
                             {{ Form::button('<i class="fas fa-fw fa-minus"></i>Supprimer',
                                 ['type' => 'submit', 'class' => 'btn btn-danger btn-xs'] )  }}
-                            
                         </a>
                         {!! Form::close() !!}
-                      
-                        
-
-
                     </td>
                 </tr>
                 @endforeach
-                <tr>
-                  
+                <tr>      
                 </tr>
 
             </tbody>
